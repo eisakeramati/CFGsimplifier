@@ -147,8 +147,6 @@ public class Simplifier {
     public boolean d(String s) {
         int place = finder(s);
 
-//        if (place == -1)
-//            System.out.println("===" + s);
 
         if (listFirst[place].size() == 1)
             return false;
@@ -163,10 +161,8 @@ public class Simplifier {
                 temp = true;
             else
                 temp = d(listFirst[place].get(i));
-            // System.out.println("++++" + listFirst[place].get(i) + temp);
             if (temp == false) {
                 firstLevel.add(listFirst[place].get(i));
-                // System.out.println("yes");
             }
             dec = dec || temp;
 
@@ -244,7 +240,6 @@ public class Simplifier {
 
         for (int i = 0; i < given.length; i++) {
             if (given[i].contains("!")) {
-                //System.out.println("++"+given[i].charAt(0));
                 secondLevel.add(Character.toString(given[i].charAt(0)));
             }
         }
@@ -256,7 +251,6 @@ public class Simplifier {
                     if (upp >= given[j].length() - 1)
                         upp++;
                     String s = given[j].substring(down(j, given[j].indexOf(secondLevel.get(i))), upp);
-                    // System.out.println(s);
                     int temp = 0;
                     for (int k = 0; k < s.length(); k++) {
                         if (!secondLevel.contains(Character.toString(s.charAt(k))))
@@ -288,25 +282,20 @@ public class Simplifier {
                 arr.add(Character.toString(str.charAt(i)));
         }
 
-        // System.out.println(arr.toString());
 
         String str1 = "";
         for (int i = 0; i < str.length(); i++) {
             if (notOkay.contains(Character.toString(str.charAt(i))))
                 str1 += Character.toString(str.charAt(i));
         }
-        // System.out.println(str1);
 
         String s = "";
         subsetGen gen = new subsetGen(str1);
         gen.getMyList().add("");
         for (int i = 0; i < gen.getMyList().size(); i++) {
-            // System.out.println(gen.getMyList().size()+"   m");
             String temp = gen.getMyList().get(i);
-            // System.out.println(temp);
             if (arranger(arr, temp, map) != "")
                 s = s + arranger(arr, temp, map) + "|";
-            //System.out.println(s);
         }
         if (gen.getMyList().size() == 0) {
             for (int i = 0; i < arr.size(); i++) {
@@ -342,11 +331,9 @@ public class Simplifier {
         ArrayList<String>[] mid = new ArrayList[s.length];
         for (int i = 0; i < s.length; i++) {
             ArrayList<String> m = new ArrayList<>();
-            // String level = s[i];
             int index = 2;
             for (int j = 0; j < s[i].length(); j++) {
                 if (Character.toString(s[i].charAt(j)).equals("|")) {
-                    //System.out.println(s[i].substring(index, j));
                     m.add(s[i].substring(0, 2) + s[i].substring(index, j));
                     index = j + 1;
                 }
@@ -355,10 +342,6 @@ public class Simplifier {
             mid[i] = m;
 
         }
-//        System.out.println("+++++++++++++++++++");
-//        for (int i = 0; i < mid.length; i++) {
-//            System.out.println(mid[i].toString());
-//        }
 
 
         for (int i = 0; i < mid.length; i++) {
@@ -370,7 +353,6 @@ public class Simplifier {
             }
             s[i] = midRes.substring(0, midRes.length() - 1);
         }
-        //return s;
         setGiven(s);
 
     }
@@ -395,7 +377,6 @@ public class Simplifier {
                     s += given[i].substring(index, j);
 
                     if (s.length() == 1 && uppercaseChecker(s)) {
-                        //if (uppercaseChecker(s))
                         thirdLevel[i].add(given[i].substring(0, 2) + s);
 
                     } else {
@@ -419,16 +400,9 @@ public class Simplifier {
         }
 
 
-//        for (int i = 0; i < thirdLevel.length; i++) {
-//            System.out.println(thirdLevel[i]);
-//        }
-
-
         for (int i = 0; i < thirdLevel.length; i++) {
             thirdLevel2[i] = new ArrayList<>();
             thirdLevel2[i].add(thirdLevel[i].get(0).substring(0, 1));
-            // System.out.println("temp    " + thirdLevel[i].get(0).substring(0, 1));
-            // if (thirdLevel[i].size()!=0)
             finisher(thirdLevel2[i], thirdLevel[i].get(0).substring(0, 1));
         }
 
@@ -438,12 +412,9 @@ public class Simplifier {
         for (int i = 0; i < thirdLevel2.length; i++) {
             String temp = thirdLevel2[i].get(0);
             String s = thirdLevel2[i].get(0) + ":";
-            //int index = getFromGraph2(thirdLevel2[i].get(0));
             for (int j = 0; j < thirdLevel2[i].size(); j++) {
                 for (int k = 0; k < mid[getFromGraph2(thirdLevel2[i].get(j))].size(); k++) {
                     String fin = mid[getFromGraph2(thirdLevel2[i].get(j))].get(k).substring(2, mid[getFromGraph2(thirdLevel2[i].get(j))].get(k).length());
-                    //System.out.println(fin+"     MMMM");
-                    //System.out.println(t.toString());
                     if (!t.contains(fin)) {
                         s += fin + "|";
                         t.add(fin);
@@ -473,9 +444,7 @@ public class Simplifier {
 
     private void finisher(ArrayList<String> arr, String s) {
         ArrayList<String> temp = new ArrayList<>();
-        // System.out.println("mmmm      " + s);
         int index = getFromGraph(s);
-        // System.out.println(index);
         for (int i = 0; i < thirdLevel[index].size(); i++) {
             if (thirdLevel[index].get(i).length() >= 3) {
                 if (!arr.contains(thirdLevel[index].get(i).substring(2, 3))) {
@@ -484,8 +453,6 @@ public class Simplifier {
                 }
             }
         }
-        // System.out.println("end");
-        // System.out.println("size    "+ temp.size());
         for (int i = 0; i < temp.size(); i++) {
             finisher(arr, temp.get(i));
         }
@@ -499,37 +466,6 @@ public class Simplifier {
         }
         return res;
     }
-
-//    public void trimmer() {
-//        for (int i = 0; i < given.length; i++) {
-//            int index = 2;
-//            String s = "";
-//            ArrayList<String> arr = new ArrayList<>();
-//            for (int j = 2; j < given[i].length(); j++) {
-//                if (Character.toString(given[i].charAt(j)).equals("|")){
-//                   // System.out.println(j+given[i]);
-//                    s =given[i].substring(index, j);
-//                   // System.out.println(index);
-//                    //System.out.println(given[i].substring(index, j));
-//                    //System.out.println("+++   "+s);
-//
-//                    if (!arr.contains(s))
-//                        arr.add(s);
-//                    else{
-//                       given[i] =given[i].replaceFirst(s+"|", "");
-//                        // arr.remove(s);
-//                    }
-//
-//                    index=j+1;
-//                }
-//
-//
-//              //  s="";
-//            }
-//            if (arr.contains(given[i].substring(given[i].lastIndexOf("|"), given[i].length())))
-//                given[i] = given[i].replace(given[i].substring(index, given[i].length())+"|", "");
-//        }
-//    }
 
 
 }
