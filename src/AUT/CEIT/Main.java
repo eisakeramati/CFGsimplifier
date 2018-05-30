@@ -12,7 +12,7 @@ public class Main {
 
 
         String[] givenA = new String[sizeA];
-        System.out.println("Now enter each statement in an individual line:(instaed of landa use ! and use uppercase letter for variables and lower case for terminals )");
+        System.out.println("Now enter each statement in an individual line(instead of landa use ! and use uppercase letter for variables and lower case for terminals ):");
         for (int i = 0; i < sizeA; i++) {
             givenA[i] = scanner.next();
         }

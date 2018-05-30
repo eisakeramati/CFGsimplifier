@@ -1,5 +1,4 @@
 package AUT.CEIT;
-
 import java.util.*;
 
 public class Simplifier {
@@ -466,6 +465,5 @@ public class Simplifier {
         }
         return res;
     }
-
-
+    
 }
