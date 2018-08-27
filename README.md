@@ -1,6 +1,6 @@
 # Context Free Grammar simplifier
-Code for simplifying context free grammar, formal languages and Automata project. 
-This code is the project of "Formal Languages and Automata" Course in university.
+
+This code is the project of "Theory Formal Languages and Automata" Course.
 
 As many of you how are familiar with the material in this course know, one of the things tought in it is the steps of simplifying
 a CF(context free) grammar. This project is the Java implementation of the 3 steps:
