@@ -2,7 +2,7 @@
 
 This code is the project of "Theory Formal Languages and Automata" Course.
 
-As many of you how are familiar with the material in this course know, one of the things tought in it is the steps of simplifying
+As many of you who are familiar with the material in this course know, one of the subjects tought in it is the steps of simplifying
 a CF(context free) grammar. This project is the Java implementation of the 3 steps:
 1. handling usless productions
 2. handling λ productions.
